@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      property="og:url"
+      content="https://lordryu-dev.github.io/astralbrain/"
+    />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="Twitterやめたい人のための推し活ツール Astral Viewer"
+    />
+    <meta
+      property="og:description"
+      content="Twitterをやめても推しのTwitterを追えるように作ったアプリです。Twitterは絶対にやめたいけど推しのTwitterは見たい時にお使いください。"
+    />
+    <meta
+      property="og:site_name"
+      content="デジタルデトックス補助ツール Astral Viewer"
+    />
+    <meta name="twitter:card" content="summary" />
+
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/modern-css-reset/dist/reset.min.css"
+    />
+    <link rel="stylesheet" href="css/main.css" />
+    <title>Astral Viewer</title>
+  </head>
+  <body>
+    <div id="app">
+      <h1>デジタルデトックス補助ツール<br />Astral Viewer ver1.0</h1>
+      <p>
+        Twitterはやめた！でも推しや公式アカウントの告知は見たい！<br />
+        というわがままな方向けのツールです。
+        くれぐれも嫌いな方を入れるなどの使い方はしないように。
+        このツールを使ってTwitter疲れしたら本末転倒なのでね。
+      </p>
+      <form v-on:submit.prevent>
+        <label for="name">TwitterID</label>
+        <input id="name" type="text" v-model="newId" />
+        <!-- 名前入力欄 -->
+        <button v-on:click="addId">追加</button>
+        <!-- 投稿ボタン -->
+      </form>
+      <ul>
+        <li v-cloak v-for="(id, index) in ids">
+          <a
+            class="twitter-timeline"
+            :href="'https://twitter.com/' + id + '?ref_src=twsrc%5Etfw'"
+            data-width="300"
+            data-height="600"
+            href="https://twitter.com/buzzwriterjp?ref_src=twsrc%5Etfw"
+            >Tweets by {{ id }}</a
+          >
+          <script
+            async
+            src="https://platform.twitter.com/widgets.js"
+            charset="utf-8"
+          ></script>
+          <button v-on:click="deleteId(index)">削除</button>
+          <!-- 削除ボタン -->
+        </li>
+      </ul>
+      <!-- <pre>{{ $data }}</pre> -->
+    </div>
+    <script src="https://unpkg.com/vue-cookies@1.8.1/vue-cookies.js"></script>
+    <script src="https://unpkg.com/vue@3.1.5"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
