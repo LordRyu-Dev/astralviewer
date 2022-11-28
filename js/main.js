@@ -31,6 +31,7 @@ const app = Vue.createApp({
     deleteId: function (index) {
       this.ids.splice(index, 1); //indexの位置から1つ名前を削除
       this.cookiesSet(); //cookie代入
+      window.location.reload();
     },
   },
   mounted() {
