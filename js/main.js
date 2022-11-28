@@ -15,9 +15,15 @@ const app = Vue.createApp({
     },
     addId: function (event) {
       //console.log('Clicked!');
-      if (this.newId === "") return; //テキストと名前のどちらかが空欄になっていたら処理を中断する
+      if (
+        this.newId === "" ||
+        !/^[0-9a-zA-Z_]{1,15}$/.test(this.newId) ||
+        this.ids.includes(this.newId)
+      ) {
+        this.newId = "";
+        return; //名前が空欄あるいは正規表現不一致になっていたら処理を中断する
+      }
       this.ids.push(this.newId); // 代入
-      if (!this.ids.includes(this.newId)) this.ids.push(this.newId); //名前が既存のものと重複してなければ代入
       this.cookiesSet(); //cookie代入
       this.newId = ""; // 同上
       window.location.reload();

@@ -32,12 +32,14 @@
   </head>
   <body>
     <div id="app">
-      <h1>デジタルデトックス補助ツール<br />Astral Viewer ver1.0</h1>
+      <h1>デジタルデトックス補助ツール<br />Astral Viewer ver1.1</h1>
       <p>
         Twitterはやめた！でも推しや公式アカウントの告知は見たい！<br />
         というわがままな方向けのツールです。<br />
         くれぐれも嫌いな方を入れるなどの使い方はしないように。<br />
-        このツールを使ってTwitter疲れしたら本末転倒なのでね。
+        このツールを使ってTwitter疲れしたら本末転倒なのでね。<br />
+        正規表現を搭載し、変な文字列が入らないようにしました。<br />
+        動作も少し軽量化しました。
       </p>
       <form v-on:submit.prevent>
         <label for="name">TwitterID</label>
@@ -56,11 +58,6 @@
             href="https://twitter.com/buzzwriterjp?ref_src=twsrc%5Etfw"
             >Tweets by {{ id }}</a
           >
-          <script
-            async
-            src="https://platform.twitter.com/widgets.js"
-            charset="utf-8"
-          ></script>
           <button v-on:click="deleteId(index)">削除</button>
           <!-- 削除ボタン -->
         </li>
@@ -69,6 +66,11 @@
     </div>
     <script src="https://unpkg.com/vue-cookies@1.8.1/vue-cookies.js"></script>
     <script src="https://unpkg.com/vue@3.1.5"></script>
+    <script
+      async
+      src="https://platform.twitter.com/widgets.js"
+      charset="utf-8"
+    ></script>
     <script src="js/main.js"></script>
   </body>
 </html>
